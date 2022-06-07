@@ -1,0 +1,23 @@
+html {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZQzQ00v8cQApVo_ZWVVsMYYlx67sfYdElcQ&usqp=CAU");
+  background-position: center;
+  background-size:cover;
+  background-repeat: none;
+  color: whitesmoke;
+  text-align: center;
+  
+}
+
+.title {
+  color: black;
+  font-size: 50px;
+  text-decoration: underline turquoise;
+  text-align:left;
+}
+
+@media (max-width: 1400px), (min-width: 560px) {
+  .html {
+    padding: 40px 100px;
+  }
+}
+
