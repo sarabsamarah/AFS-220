@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <title>Yoga Builder Application</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'dj_app/site.css' %}" />
+</head>
+ 
+<body>
+    <h1>Hi {{ name }},</h1>
+    Current date is {{ date | date:"l, d F Y" }}. <br>
+    Current time is {{ date | time:"h:i:s A" }}.
+</body>
+ 
+</html>
