@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-// Issue Blueprint
-const issueSchema = new Schema({
+// Pose Blueprint
+const poseSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -22,4 +22,4 @@ const issueSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('Issue', issueSchema)
+module.exports = mongoose.model('Pose', poseSchema)

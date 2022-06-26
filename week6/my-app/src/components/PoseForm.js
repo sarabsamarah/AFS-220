@@ -5,9 +5,9 @@ const initInputs = {
   description: ""
 }
 
-export default function IssueForm(props) {
+export default function PoseForm(props) {
   const [inputs, setInputs] = useState(initInputs)
-  const { addIssue } = props
+  const { addPose } = props
 
   function handleChange(e){
     const {name, value} = e.target
@@ -19,7 +19,7 @@ export default function IssueForm(props) {
 
   function handleSubmit(e){
     e.preventDefault()
-    addIssue(inputs)
+    addPose(inputs)
     setInputs(initInputs)
   }
 
@@ -38,7 +38,7 @@ export default function IssueForm(props) {
         value={description} 
         onChange={handleChange} 
         placeholder="Description"/>
-      <button>Add Issue</button>
+      <button>Add a Yoga Pose</button>
     </form>
   )
 }

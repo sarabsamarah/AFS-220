@@ -7,9 +7,9 @@ const votesSchema = new Schema({
         type: String,
         required: true
     },
-    issue: {
+    pose: {
         type: Schema.Types.ObjectId,
-        ref: "Issue",
+        ref: "Pose",
         required: true
     },
     user: {

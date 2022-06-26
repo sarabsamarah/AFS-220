@@ -2,11 +2,11 @@ import React from 'react'
 import AddComment from './AddComment'
 import Comments from './Comments'
 
-export default function Issue(props) {
+export default function Pose(props) {
   const { _id, title, description, votes, comments, addComment, handleUpvote, handleDownvote } = props
 
   return (
-    <div className="issue">
+    <div className="pose">
       <h1>{ title } </h1>
       <h2>Votes:{ votes }</h2>
       <h3>{ description }</h3>

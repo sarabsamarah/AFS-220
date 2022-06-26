@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../context/UserProvider'
-import IssueList from '../components/IssueList'
+import PoseList from '../components/PoseList'
 
 export default function Profile() {
-  const { user, issues, comments, addComment, handleUpvote, handleDownvote, resetAlreadyVoted, errMsg } = useContext(UserContext)
+  const { user, poses, comments, addComment, handleUpvote, handleDownvote, resetAlreadyVoted, errMsg } = useContext(UserContext)
 
   useEffect(() => {
     resetAlreadyVoted()
@@ -13,10 +13,10 @@ export default function Profile() {
   return (
     <div className="profile">
       <h1>Welcome {`${user.firstname} ${user.lastname}`}</h1>
-      <h3>Your Issues:</h3>
+      <h3>Your Yoga Library:</h3>
       <p className='err-msg'>{errMsg}</p>
-      <IssueList 
-        issues={issues} 
+      <PoseList 
+        poses={poses} 
         comments={comments}
         addComment={addComment}
         handleUpvote={handleUpvote}

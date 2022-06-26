@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Navbar from './components/Navbar.js'
 import Auth from './components/Auth.js'
 import Profile from './components/Profile.js'
-import Issues from './components/Issues.js'
+import Poses from './components/Poses.js'
 import ProtectedRoute from './components/ProtectedRoute'
 import { UserContext } from './context/UserProvider'
 
@@ -12,7 +12,7 @@ export default function App() {
 
   return (
       <div className="app">
-          <h1>Rock the Vote</h1>
+          <h1>Your Yoga Library</h1>
           { token && <Navbar logout={logout} /> }
           <Switch>
             <Route 
@@ -26,8 +26,8 @@ export default function App() {
               token={token}
             />
             <ProtectedRoute 
-              path="/issues"
-              component={Issues}
+              path="/poses"
+              component={Poses}
               redirectTo='/'
               token={token}
             />

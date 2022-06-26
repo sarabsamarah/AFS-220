@@ -14,10 +14,10 @@ commentRouter.route('/')
         })
     })
 
-// post a new comment based on issue id
-commentRouter.route('/add/:issueId')
+// post a new comment based on pose id
+commentRouter.route('/add/:poseId')
     .post((req, res, next) => {
-        req.body.issue = req.params.issueId
+        req.body.issue = req.params.poseId
         req.body.user = req.user._id
 
         console.log("Will this add user", req.body.user)
@@ -33,10 +33,10 @@ commentRouter.route('/add/:issueId')
         })
     })
 
-// get all comments based on issue id
-commentRouter.route('/byIssue/:issueId')
+// get all comments based on pose id
+commentRouter.route('/byPose/:poseId')
     .get((req, res, next) => {
-        Comment.find({ issue: req.params.issueId }, (err, comments) => {
+        Comment.find({ pose: req.params.poseId }, (err, comments) => {
             if (err) {
                 res.status(500)
                 return next(err)

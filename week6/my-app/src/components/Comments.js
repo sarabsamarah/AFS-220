@@ -2,7 +2,7 @@ import React from 'react'
 import Comment from './Comment'
 
 function Comments(props) {
-    const comments = props.comments.filter(comment => comment.issue === props._id)
+    const comments = props.comments.filter(comment => comment.pose === props._id)
 
     return (
         <div>
