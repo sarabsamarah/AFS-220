@@ -148,10 +148,18 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    function addComment(id, newComment) {
+        userAxios.post(`/api/comments/add/${id}`, newComment)
+        .then(res => {
+            getComments()
+        })
+        .catch(err => console.log(err.response.data.errMsg))
+    }
+
     function getComments() {
         userAxios.get('/api/comments')
             .then(res => {
-                console.log("what is going on", res.data)
+                // console.log("what is going on", res.data)
                 localStorage.setItem('comments', JSON.stringify(res.data))
 
                 setUserState(prevState => ({
@@ -162,13 +170,7 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
-    function addComment(id, newComment) {
-        userAxios.post(`/api/comments/add/${id}`, newComment)
-        .then(res => {
-            getComments()
-        })
-        .catch(err => console.log(err.response.data.errMsg))
-    }
+    
 
     function handleUpvote(id) {
         userAxios.get(`/api/poses/upvote/${id}`)
