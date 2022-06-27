@@ -15,8 +15,8 @@ export default function UserProvider(props) {
     const initState = { 
         user: JSON.parse(localStorage.getItem('user')) || {}, 
         token: localStorage.getItem('token') || '', 
-        issues: JSON.parse(localStorage.getItem('issues')) || [],
-        allIssues: JSON.parse(localStorage.getItem('allIssues')) || [],
+        poses: JSON.parse(localStorage.getItem('poses')) || [],
+        allPoses: JSON.parse(localStorage.getItem('allPoses')) || [],
         comments: JSON.parse(localStorage.getItem('comments')) || [],
         username: '',
         errMsg: ''
@@ -48,8 +48,8 @@ export default function UserProvider(props) {
                 localStorage.setItem('token', token)
                 localStorage.setItem('user', JSON.stringify(user))
 
-                getUserIssues()
-                getAllIssues()
+                getUserPoses()
+                getAllPoses()
                 getComments()
                 setUserState(prevState => ({
                     ...prevState,
@@ -63,14 +63,14 @@ export default function UserProvider(props) {
     function logout() {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
-        localStorage.removeItem('issues')
-        localStorage.removeItem('allIssues')
+        localStorage.removeItem('poses')
+        localStorage.removeItem('allPoses')
         localStorage.removeItem('comments')
         setUserState({
             user: {},
             token: '',
-            issues: [],
-            allIssues: [],
+            poses: [],
+            getAllPoses: [],
             comments: []
         })
     }
@@ -103,45 +103,46 @@ export default function UserProvider(props) {
         }))
     }
 
-    function getUserIssues() {
+    function getUserPoses() {
         resetAlreadyVoted()
 
-        userAxios.get("/api/issues/user")
+        userAxios.get("/api/poses/user")
         .then(res => {
-            localStorage.setItem('issues', JSON.stringify(res.data))
+            console.log(res)
+            localStorage.setItem('poses', JSON.stringify(res.data))
 
             setUserState(prevState => ({
                 ...prevState,
-                issues: res.data
+                poses: res.data
             }))
         })
         .catch(err => console.log(err.response.data.errMsg))
     }
 
-    function getAllIssues() {
+    function getAllPoses() {
         resetAlreadyVoted()
 
-        userAxios.get("/api/issues")
+        userAxios.get("/api/poses")
         .then(res => {
-            localStorage.setItem('allIssues', JSON.stringify(res.data))
+            localStorage.setItem('allPoses', JSON.stringify(res.data))
 
             setUserState(prevState => ({
                 ...prevState,
-                allIssues: res.data
+                allPoses: res.data
             }))
         })
         .catch(err => console.log(err.response.data.errMsg))
     }
 
-    function addIssue(newIssue) {
+    function addPose(newPose) {
         resetAlreadyVoted()
 
-        userAxios.post('/api/issues', newIssue)
+        userAxios.post('/api/poses', newPose)
             .then(res => {
                 setUserState(prevState => ({
                     ...prevState, 
-                    issues: [...prevState.issues, res.data],
-                    allIssues: [...prevState.allIssues, res.data]
+                    poses: [...prevState.poses, res.data],
+                    allPoses: [...prevState.allPoses, res.data]
                 }))
             })
             .catch(err => console.log(err.response.data.errMsg))
@@ -170,24 +171,24 @@ export default function UserProvider(props) {
     }
 
     function handleUpvote(id) {
-        userAxios.get(`/api/issues/upvote/${id}`)
+        userAxios.get(`/api/poses/upvote/${id}`)
             .then(res => {
                 if (res.data.length !== 0) {
-                    handleAlreadyVoted('You already voted on this issue')
+                    handleAlreadyVoted('You already voted on this pose')
                 } else {
                     resetAlreadyVoted()
 
-                    userAxios.put(`/api/issues/upvote/${id}`)
+                    userAxios.put(`/api/poses/upvote/${id}`)
                         .then(res => {
                             setUserState(prevState => ({
                                 ...prevState, 
-                                issues: [...prevState.issues.map(issue => issue._id !== id ? issue : res.data)],
-                                allIssues: [...prevState.allIssues.map(issue => issue._id !== id ? issue : res.data)]
+                                poses: [...prevState.poses.map(pose => pose._id !== id ? pose : res.data)],
+                                allPoses: [...prevState.allPoses.map(pose => pose._id !== id ? pose : res.data)]
                             }))
                             
                         })
                         .catch(err => console.log(err.response.data.errMsg))
-                    userAxios.post(`/api/issues/vote/${id}`)
+                    userAxios.post(`/api/poses/vote/${id}`)
                         .catch(err => console.log(err.response.data.errMsg))
                     }
             })
@@ -195,24 +196,24 @@ export default function UserProvider(props) {
     }
 
     function handleDownvote(id) {
-        userAxios.get(`/api/issues/upvote/${id}`)
+        userAxios.get(`/api/poses/upvote/${id}`)
             .then(res => {
                 if (res.data.length !== 0) {
-                    handleAlreadyVoted('You already voted on this issue')
+                    handleAlreadyVoted('You already voted on this pose')
                 } else {
                     resetAlreadyVoted()
                     
-                    userAxios.put(`/api/issues/downvote/${id}`)
+                    userAxios.put(`/api/poses/downvote/${id}`)
                         .then(res => {
                             setUserState(prevState => ({
                                 ...prevState, 
-                                issues: [...prevState.issues.map(issue => issue._id !== id ? issue : res.data)],
-                                allIssues: [...prevState.allIssues.map(issue => issue._id !== id ? issue : res.data)]
+                                poses: [...prevState.poses.map(pose => pose._id !== id ? pose : res.data)],
+                                allPoses: [...prevState.allPoses.map(pose => pose._id !== id ? pose : res.data)]
                             }))
                             
                         })
                         .catch(err => console.log(err.response.data.errMsg))
-                    userAxios.post(`/api/issues/vote/${id}`)
+                    userAxios.post(`/api/poses/vote/${id}`)
                         .catch(err => console.log(err.response.data.errMsg))
                     }
             })
@@ -227,7 +228,7 @@ export default function UserProvider(props) {
                 signup,
                 login,
                 logout,
-                addIssue,
+                addPose,
                 addComment,
                 resetAuthErr,
                 handleUpvote,

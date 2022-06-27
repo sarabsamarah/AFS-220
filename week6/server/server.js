@@ -20,6 +20,12 @@ mongoose.connect('mongodb://localhost:27017/yoga-builder',
 )
     .then(() => console.log("Connected to DB"))
 
+// main().catch(err => console.log(err));
+
+// async function main() {
+//   await mongoose.connect('mongodb://localhost:27017/yoga-builder');
+// }
+
 // Routes
 app.use('/auth', require('./routes/authRouter'))
 app.use('/api', expressJwt({ secret: process.env.SECRET, algorithms: ['HS256'] })) //req.user

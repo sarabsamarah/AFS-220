@@ -1,12 +1,13 @@
 const express = require('express')
 const poseRouter = express.Router()
-const Issue = require('../models/pose')
+const Pose = require('../models/pose')
 const Votes = require('../models/votes')
-
+// const { default: Poses } = require('../../my-app/src/components/Poses')
+console.log(Pose)
 /// get all poses
 poseRouter.route('/')
 .get((req, res, next) => {
-    Issue.find((err, poses) => {
+    Pose.find((err, poses) => {
         if (err) {
             res.status(500)
             return next(err)
@@ -34,11 +35,13 @@ poseRouter.route('/')
 // get all poses based on user id
 poseRouter.route('/user')
 .get((req, res, next) => {
+    console.log(Pose)
     Pose.find({ user: req.user._id }, (err, poses) => {
         if (err) {
             res.status(500)
             return next(err)
         }
+        console.log(poses)
         return res.status(200).send(poses)
     })
 })
@@ -57,7 +60,7 @@ poseRouter.route('/upvote/:poseId')
     })
 
 .put((req, res, next) => {
-    Issue.findOneAndUpdate(
+    Pose.findOneAndUpdate(
         { _id: req.params.poseId },
         { $inc: { votes: 1 }},
         { new: true },
@@ -73,7 +76,7 @@ poseRouter.route('/upvote/:poseId')
 // add item to votes for this user
 poseRouter.route('/vote/:poseId')
 .post((req, res, next) => {
-    req.body.issue = req.params.poseId
+    req.body.pose = req.params.poseId
     req.body.user = req.user._id
     req.body.vote = 'upvote'
 

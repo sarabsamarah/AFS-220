@@ -4,7 +4,7 @@
     margin-top: 15px;
     padding: 5px;
     font-size: 20px;
-    font-family:monospace;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
    
     
     
@@ -21,7 +21,7 @@
   }
   
   .app {
-    border: 5px solid red;
+    border: 5px solid teal;
     width: 700px;
     margin: auto;
     
@@ -32,7 +32,7 @@
     justify-content: space-around;
     align-items: center;
     height: 50px;
-    background-color:royalblue;
+    background-color:plum;
   }
   
   .auth-container {
@@ -40,7 +40,7 @@
     align-items: center;
     flex-direction: column;
     padding: 20px;
-    background-image:url("vote.png");
+    background-image:url("yogacap.jpeg");
     background-repeat: no-repeat;
     background-size: contain;
 
@@ -83,26 +83,26 @@
     flex-direction: column;
     align-items: center;
     height: fit-content;
-    background-color: red;
+    background-color:tan;
     color: white;
   }
 
 
   
-  .issues {
+  .poses {
     display: flex;
     flex-direction: column;
     align-items: center;
     height:fit-content;
-    background-image: url("issueimage.jpeg");
+    background-image: url("allBodies.jpeg");
     background-repeat: no-repeat;
     background-size:auto;
     font-size: 30px;
     text-decoration: bold;
-    background-color: red;
+    background-color:tan;
   }
 
-  .issue {
+  .pose {
     border: 2px solid lightgrey;
     padding: 20px;
   }
@@ -114,7 +114,7 @@
     
   }
   
-  .issues > h1 {
+  .poses > h1 {
     margin: 8px;
     font-size: 1em;
     text-align: center;
@@ -122,7 +122,7 @@
     align-items:center;
   }
   
-  .issues > form {
+  .poses > form {
     
     padding: 20px;
     display: flex;
@@ -130,19 +130,19 @@
     
   }
   
-  .issues > form > input {
+  .poses > form > input {
     margin: 16px 8px;
     padding: 8px;
     border-radius: 4px;
   }
   
-  .issues > form > button {
+  .poses > form > button {
     margin: 16px 8px;
     padding: 8px;
     border-radius: 4px;
   }
   
-  .issue-list {
+  .pose-list {
     width: 630px;
     display: grid;
     grid-template-areas: 'a';
@@ -153,7 +153,7 @@
     margin: auto;
   }
   
-  .issue > h1 {
+  .pose > h1 {
     margin: 8px;
     font-size: 1em;
     text-align: center;
@@ -169,7 +169,7 @@
   }
 
   .add-comment-form {
-    background-color: blue;
+    background-color:violet;
     border: 5px solid black;
     padding: 10px;
   }
