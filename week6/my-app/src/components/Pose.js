@@ -6,7 +6,7 @@ export default function Pose(props) {
   const { _id, title, description, votes, comments, addComment, handleUpvote, handleDownvote } = props
 
   return (
-    <div className="pose">
+    <div className='pose'>
       <h1>{ title } </h1>
       <h2>Votes:{ votes }</h2>
       <h3>{ description }</h3>
